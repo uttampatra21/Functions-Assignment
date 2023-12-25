@@ -1,0 +1,117 @@
+Q1. Create an arrow function called square that takes a number as an argument and returns its square. Use
+the arrow function to calculate the square of a given number and display the result.
+
+ANS : 
+const square = (number) => number * number;
+
+// Example: Calculate the square of 7
+const result = square(7);
+console.log(`The square of 7 is: ${result}`);
+
+
+Q2. Create a JavaScript function called generateGreeting that takes a name as an argument and returns a
+personalized greeting message. Use this function to greet three different people.
+
+ANS : 
+
+function generateGreeting(name) {
+  return `Hello, ${name}! Welcome to the program.`;
+}
+
+// Example: Greet three different people
+console.log(generateGreeting("Alice"));
+console.log(generateGreeting("Bob"));
+console.log(generateGreeting("Charlie"));
+
+
+Q3. Create an IIFE (Immediately Invoked Function Expression) that calculates the square of a number and
+immediately displays the result.
+ANS :
+
+(function() {
+  const number = 5;
+  const square = number * number;
+  console.log(`The square of ${number} is: ${square}`);
+})();
+
+
+
+Q4. Write a JavaScript function called calculateTax that takes an income as an argument and returns the
+amount of tax to be paid. Use a closure to handle different tax rates based on income ranges. Test the
+function with various incomes.
+
+ANS : 
+
+function calculateTax(income) {
+  // Closure with tax rates based on income ranges
+  function getTaxRate() {
+    if (income <= 50000) {
+      return 0.1; // 10% tax for income up to 50,000
+    } else {
+      return 0.2; // 20% tax for income above 50,000
+    }
+  }
+
+  // Calculate tax amount
+  const taxRate = getTaxRate();
+  const taxAmount = income * taxRate;
+
+  return taxAmount;
+}
+
+// Test the function with various incomes
+console.log(`Tax for income $30,000: $${calculateTax(30000)}`);
+console.log(`Tax for income $60,000: $${calculateTax(60000)}`);
+
+
+
+Q5. Write a JavaScript function called factorial that calculates the factorial of a non-negative integer using
+recursion. Test the function with different inputs.
+
+ANS : 
+
+function factorial(n) {
+  // Base case: factorial of 0 is 1
+  if (n === 0) {
+    return 1;
+  } else {
+    // Recursive case: factorial of n is n multiplied by factorial of (n-1)
+    return n * factorial(n - 1);
+  }
+}
+
+// Test the function with different inputs
+console.log(`Factorial of 0: ${factorial(0)}`);
+console.log(`Factorial of 5: ${factorial(5)}`);
+console.log(`Factorial of 8: ${factorial(8)}`);
+
+
+Q6. Write a JavaScript function called curry that takes a function as an argument and returns a curried
+version of that function. The curried function should accept arguments one at a time and return a new
+function until all arguments are provided. Then, it should execute the original function with all arguments.
+Test the curry function with a function that adds two numbers.
+
+ANS : 
+
+function curry(fn) {
+  return function curried(...args) {
+    if (args.length >= fn.length) {
+      return fn(...args);
+    } else {
+      return function(...moreArgs) {
+        return curried(...args, ...moreArgs);
+      };
+    }
+  };
+}
+
+// Test the curry function with a function that adds two numbers
+function add(x, y) {
+  return x + y;
+}
+
+const curriedAdd = curry(add);
+
+console.log(curriedAdd(3)(5)); // Outputs: 8
+console.log(curriedAdd(3, 5)); // Outputs: 8
+console.log(curriedAdd(3)(5, 7)); // Outputs: 15
